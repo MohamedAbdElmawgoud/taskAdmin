@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 // import { } from '@types/googlemaps';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import {  FormGroup, Validators, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./e-reservation.component.css']
 })
 export class EReservationComponent implements OnInit {
-  basicForm: FormGroup;
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
 
@@ -27,23 +26,23 @@ export class EReservationComponent implements OnInit {
   addTicketStatus= false;
   buyersInfo= false;
 
-  
+  basicForm = new FormGroup({
+    
+        "EventName": new FormControl('', Validators.required),
+        "Expirydate": new FormControl('', Validators.required),
+        "EventDescription": new FormControl('', Validators.required),
+        "PaymentMessage": new FormControl('', Validators.required),
+        // "Paymentoptions": new FormControl('', Validators.required),
+        // "showOnShop": new FormControl('', Validators.required),
+        // "feesToBuyer": new FormControl('', Validators.required),
+        // "TaxesEvent": new FormControl('', Validators.required),
+      });
       
   constructor(private router: Router) { }
 
 
   ngOnInit() {
-    this.basicForm = new FormGroup({
-      
-          "EventName": new FormControl('',[ Validators.required]),
-          "Expirydate": new FormControl('',[ Validators.required]),
-          "EventDescription": new FormControl('',[ Validators.required]),
-          "PaymentMessage": new FormControl('',[ Validators.required]),
-          // "Paymentoptions": new FormControl('',[ Validators.required]),
-          // "showOnShop": new FormControl('',[ Validators.required]),
-          // "feesToBuyer": new FormControl('',[ Validators.required]),
-          // "TaxesEvent": new FormControl('',[ Validators.required]),
-        });
+
   }
 
   GoToEstraInfo(){
