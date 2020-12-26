@@ -1,0 +1,436 @@
+<div class="card-body">
+  
+        <div class="mb-4 stepInfo">
+            <h6>Basic Information</h6>
+            <span class="fa-stack fa-3x" data-count="1">
+                
+              </span>
+        </div>
+        <form [formGroup]="basicForm" (ngSubmit)="basicForm.valid && GoToEstraInfo()" action="GoToEstraInfo">
+        <div class="pl-lg-4" *ngIf="basicInfo">
+ 
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Event Name</label>
+                        <input  formControlName="EventName" type="text" id="input-eventName" class="form-control " placeholder="eventName">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Expiry date</label>
+                        <input formControlName="Expirydate" type="date" id="input-date" class="form-control ">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Event Description</label>
+                        <input formControlName="EventDescription" type="text" id="input-Event-description" class="form-control " placeholder="Event Description">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">After Payment Message</label>
+                        <input formControlName="PaymentMessage" type="text" id="input-After-Payment-Message" class="form-control " placeholder="After Payment Message">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr class="my-4" />
+
+
+
+
+
+        <div class="pl-lg-4">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="form-control-label " for="input-city">Payment options</label> <br>
+                        <div class="flex">
+                            <input type="checkbox" class="checkboxBtn " name="nameOfChoice" value="AMAN" />
+                            <label for="vehicle1" class="form-control-label checkboxLabel">Cash through AMAN</label>
+                        </div>
+
+                        <div class="flex">
+                            <input type="checkbox" class="checkboxBtn " name="nameOfChoice" value="Mobile" />
+                            <label for="vehicle1" class="form-control-label checkboxLabel">Mobile Wallet</label>
+                        </div>
+
+                        <div class="flex">
+                            <input type="checkbox" class="checkboxBtn " name="nameOfChoice" value="Mezza" checked="checked" />
+                            <label for="vehicle1" class="form-control-label checkboxLabel">Mezza</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-address">Do you want to show this Event on your shop?</label>
+
+                        <br>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="shop"> <span> Yes</span>
+                        </div>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="shop" value="no" (change)="handleChange($event)">                            <span>No</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Do you want the fees to be on the buyer?</label>
+
+                        <br>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="buyer" value="yes"> <span> Yes</span>
+                        </div>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="buyer" value="no"> <span>No</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Do you want to apply Taxes for this Event?</label>
+
+                        <br>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="applyTaxes" value="yes" (change)="handleChange($event)">                            <span> Yes</span>
+                        </div>
+                        <div class="flex">
+                            <input class="radioBtn " type="radio" name="applyTaxes" value="no" (change)="handleChange($event)">                            <span>No</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="my-4" />
+
+
+        <div class="pl-lg-4" *ngIf="TaxesEventStatus">
+            <div class="form-group">
+
+                <label class="CurrencyLabel form-control-label">Viewing Currency</label>
+                <select name="Currency" id="Currency" class="CurrencyList">
+                    <option value="USD">USD</option>
+                    <option value="EGP" >EGP</option>
+                </select>
+
+                <br>
+                <br>
+                <label class="TaxesTypesLabel form-control-label">Taxes Types</label>
+                <select name="TaxesTypes" id="TaxesTypes" class="TaxesTypesList">
+
+                    <option value="Flat" >Flat</option>
+                    <option value="Percentage">Percentage</option>
+                   
+                </select>
+
+            </div>
+        </div>
+        <button class="btn btn-info" (click)="GoToEstraInfo()"></button>
+    </form>
+</div>
+
+
+
+<!-- Exra Info Step 2 -->
+
+
+
+<div class="card-body" *ngIf="extraInfoStatus">
+    <form>
+        <div class="mb-4 stepInfo">
+            <h6>Extra Information</h6>
+            <span class="fa-stack fa-3x" data-count="2"></span>
+
+            <br>
+
+
+        </div>
+
+
+        <div class="pl-lg-4">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="imageLabel form-control-label">Event image</label>
+                    <label class="btn btn-outline-info btn-lg">
+                               Upload Image
+                             <input type="file"hidden class="form-control-file"   (change)="fileChanged($event)"/>
+                                       <i class="ni ni-cloud-upload-96"></i>
+                        </label>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Category</label>
+                        <br>
+                        <select name="Category" id="Category" class="CategoryList form-control">
+
+                                <option value="Digital" >Digital books</option>
+                                <option  value="Clothings">Clothings</option>
+                                <option value="Electronics" >Electronics</option>
+                                <option value="Fashion" >Fashion</option>
+                            </select>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Event Duration</label>
+                        <br>
+                        <input type="date" id="Start-date" class="form-control dateInput">
+                        <label class="dateLabel">To</label>
+                        <input type="date" id="end-date" class="form-control dateInput">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Email Address</label>
+                        <input type="Email" id="Email" class="form-control ">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Event Location</label>
+                        <br>
+                        <input type="text" id="location" class="form-control inputLocation" value={{location.latitude}},{{location.longitude}}>
+                        <button class="btn btn-info" (click)="findMe()"> set Location</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="pl-lg-4">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Delivery Terms</label>
+                        <input type="text" id="Delivery" class="form-control ">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Return Terms</label>
+                        <input type="text" id="Return" class="form-control ">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="pl-lg-4">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Facebook Link</label>
+                        <input type="text" id="Facebook" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr class="my-4" />
+    </form>
+</div>
+
+
+
+<!-- add ticket Step 3 -->
+
+
+
+
+<div class="card-body" *ngIf="addTicketStatus">
+    <form>
+        <div class="mb-4 stepInfo">
+            <h6>Add Ticket</h6>
+            <span class="fa-stack fa-3x" data-count="3"></span>
+
+            <br>
+
+
+        </div>
+
+
+        <div class="pl-lg-4">
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        <label class="form-control-label">Ticket Name</label>
+                        <br>
+                        <input type="text" id="Ticket-Name" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Total Quntity</label>
+                        <br>
+                        <input type="number" id="Total-Quntity" class="form-control">
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Max Quntity Per sale</label>
+                        <br>
+                        <input type="number" id="Max-Quntity" class="form-control">
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+
+
+                    <div class="form-group">
+                        <label class="imageLabel form-control-label">select file</label>
+                        <label class="btn btn-outline-info btn-lg">
+                                       Upload
+                   <input type="file"hidden class="form-control-file"   (change)="fileChanged($event)"/>
+                          <i class="ni ni-cloud-upload-96"></i>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="Pending-Quntity" name="Pending" placeholder="Pending Quntity" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="Paid-Quntity" name="Paid" placeholder="Paid Quntity" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <label class="form-control-label">Price</label> -->
+                        <input type="number" class="form-control" id="price" name="price" placeholder="price">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Ticket Description</label>
+                        <input type="text" id="Ticket-Description" class="form-control ">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label">Ticket Expire</label>
+                        <br>
+                        <input type="date" id="Start-date" class="form-control dateInput">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <hr class="my-4" />
+    </form>
+</div>
+
+
+
+
+
+<!-- buyers info -->
+
+<div class="pl-lg-4" *ngIf="buyersInfo">
+
+    <div class="row">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id="container">
+
+            <div class="product-details">
+
+                <h1>Name </h1>
+
+
+                <p class="information">the most awaited day of the year.Christmas Tree is what one need the most</p>
+
+            </div>
+
+            <div class="product-image">
+
+                <img src="https://blog.sandiego.org/wp-content/uploads/2020/04/SDT_Zoom-Backgrounds_April-8_Windansea-1_1600x800.jpg" alt="">
+
+
+                <div class="info">
+                    <h2> Description</h2>
+                    <ul>
+                        <li><strong>Height : </strong>5 Ft </li>
+                        <li><strong>Shade : </strong>Olive green</li>
+                        <li><strong>Decoration: </strong>balls and bells</li>
+                        <li><strong>Material: </strong>Eco-Friendly</li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
