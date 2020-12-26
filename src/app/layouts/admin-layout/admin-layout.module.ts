@@ -19,6 +19,7 @@ import { EReservationComponent } from "../../pages/e-reservation/e-reservation.c
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule
