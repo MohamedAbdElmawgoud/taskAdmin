@@ -13,7 +13,14 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Event Name</label>
-                        <input  formControlName="EventName" type="text" id="input-eventName" class="form-control " placeholder="eventName">
+                        <input  formControlName="EventName" 
+                        type="text" id="input-eventName" class="form-control " placeholder="eventName"
+                        [ngClass]="{'is-invalid':basicForm.get('EventName').touched && basicForm.get('EventName').invalid}" />
+                        <div *ngIf="basicForm.get('EventName').touched && basicForm.get('EventName').invalid"  class="invalid-feedback">
+                          <div *ngIf="basicForm.get('EventName').errors.required">Event Name is required!</div>
+                                
+                        </div>
+                       
                     </div>
                 </div>
 
@@ -21,7 +28,12 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Expiry date</label>
-                        <input formControlName="Expirydate" type="date" id="input-date" class="form-control ">
+                        <input formControlName="Expirydate" type="date" id="input-date" class="form-control "
+                        [ngClass]="{'is-invalid':basicForm.get('Expirydate').touched && basicForm.get('Expirydate').invalid}" />
+                        <div *ngIf="basicForm.get('Expirydate').touched && basicForm.get('Expirydate').invalid"  class="invalid-feedback">
+                          <div *ngIf="basicForm.get('Expirydate').errors.required">Expiry date is required!</div>
+                                
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,7 +45,13 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Event Description</label>
-                        <input formControlName="EventDescription" type="text" id="input-Event-description" class="form-control " placeholder="Event Description">
+                        <input formControlName="EventDescription" 
+                        type="text" id="input-Event-description" class="form-control " placeholder="Event Description"
+                        [ngClass]="{'is-invalid':basicForm.get('EventDescription').touched && basicForm.get('EventDescription').invalid}" />
+                        <div *ngIf="basicForm.get('EventDescription').touched && basicForm.get('EventDescription').invalid"  class="invalid-feedback">
+                          <div *ngIf="basicForm.get('EventDescription').errors.required">Event Description is required!</div>
+                                
+                        </div>
                     </div>
                 </div>
 
@@ -41,7 +59,13 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">After Payment Message</label>
-                        <input formControlName="PaymentMessage" type="text" id="input-After-Payment-Message" class="form-control " placeholder="After Payment Message">
+                        <input formControlName="PaymentMessage" 
+                        type="text" id="input-After-Payment-Message" class="form-control "
+                         placeholder="After Payment Message"
+                         [ngClass]="{'is-invalid':basicForm.get('PaymentMessage').touched && basicForm.get('PaymentMessage').invalid}" />
+                         <div *ngIf="basicForm.get('PaymentMessage').touched && basicForm.get('PaymentMessage').invalid"  class="invalid-feedback">
+                           <div *ngIf="basicForm.get('PaymentMessage').errors.required">Payment Message is required!</div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -92,7 +116,8 @@
                             <input class="radioBtn " type="radio" name="shop" checked="checked"> <span> Yes</span>
                         </div>
                         <div class="flex">
-                            <input class="radioBtn " type="radio" name="shop" value="no" (change)="handleChange($event)">                            <span>No</span>
+                            <input class="radioBtn " type="radio" name="shop" value="no" 
+                            (change)="handleChange($event)">                            <span>No</span>
                         </div>
 
                     </div>
@@ -120,11 +145,13 @@
 
                         <br>
                         <div class="flex">
-                            <input class="radioBtn " type="radio" name="applyTaxes" value="yes" (change)="handleChange($event)">     
+                            <input class="radioBtn " type="radio" name="applyTaxes" value="yes" 
+                            (change)="handleChange($event)">     
                                                    <span> Yes</span>
                         </div>
                         <div class="flex">
-                            <input class="radioBtn " type="radio" name="applyTaxes" value="no" (change)="handleChange($event)" checked="checked">     
+                            <input class="radioBtn " type="radio" name="applyTaxes" value="no" 
+                            (change)="handleChange($event)" checked="checked">     
                                                    <span>No</span>
                         </div>
                     </div>
@@ -211,9 +238,19 @@
                     <div class="form-group">
                         <label class="form-control-label">Event Duration</label>
                         <br>
-                        <input type="date" id="Start-date" formControlName="DurationFrom" class="form-control dateInput">
-                        <label class="dateLabel">To</label>
-                        <input type="date" id="end-date" formControlName="DurationTo"  class="form-control dateInput">
+                        <input type="date" id="Start-date"
+                         formControlName="DurationFrom" class="form-control " 
+                         [ngClass]="{'is-invalid':extraForm.get('DurationFrom').touched && extraForm.get('DurationFrom').invalid}" />
+                         <div *ngIf="extraForm.get('DurationFrom').touched && extraForm.get('DurationFrom').invalid"  class="invalid-feedback">
+                           <div *ngIf="extraForm.get('DurationFrom').errors.required">Start-date is required!</div>
+                         </div>
+                        <br>
+                        <input type="date" id="end-date" 
+                        formControlName="DurationTo"  class="form-control " 
+                        [ngClass]="{'is-invalid':extraForm.get('DurationTo').touched && extraForm.get('DurationTo').invalid}" />
+                        <div *ngIf="extraForm.get('DurationTo').touched && extraForm.get('DurationTo').invalid"  class="invalid-feedback">
+                          <div *ngIf="extraForm.get('DurationTo').errors.required">End-date is required!</div>
+                        </div>
 
                     </div>
                 </div>
@@ -226,7 +263,12 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Email Address</label>
-                        <input type="Email" id="Email" formControlName="Email" class="form-control ">
+                        <input type="Email" id="Email" 
+                        formControlName="Email" class="form-control "
+                        [ngClass]="{'is-invalid':extraForm.get('Email').touched && extraForm.get('Email').invalid}" />
+                        <div *ngIf="extraForm.get('Email').touched && extraForm.get('Email').invalid"  class="invalid-feedback">
+                          <div *ngIf="extraForm.get('Email').errors">Email Address is required in valid format!</div>
+                        </div>
                     </div>
                 </div>
 
@@ -255,7 +297,12 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Delivery Terms</label>
-                        <input type="text" id="Delivery" formControlName="Delivery" class="form-control ">
+                        <input type="text" id="Delivery" 
+                        formControlName="Delivery" class="form-control "
+                        [ngClass]="{'is-invalid':extraForm.get('Delivery').touched && extraForm.get('Delivery').invalid}" />
+                        <div *ngIf="extraForm.get('Delivery').touched && extraForm.get('Delivery').invalid"  class="invalid-feedback">
+                          <div *ngIf="extraForm.get('Delivery').errors.required">Delivery Terms is required!</div>
+                        </div>
                     </div>
                 </div>
 
@@ -263,7 +310,12 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Return Terms</label>
-                        <input type="text" id="Return"  formControlName="Return" class="form-control ">
+                        <input type="text" id="Return" 
+                         formControlName="Return" class="form-control "
+                         [ngClass]="{'is-invalid':extraForm.get('Return').touched && extraForm.get('Return').invalid}" />
+                         <div *ngIf="extraForm.get('Return').touched && extraForm.get('Return').invalid"  class="invalid-feedback">
+                           <div *ngIf="extraForm.get('Return').errors.required">Return Terms is required!</div>
+                         </div>
 
                     </div>
                 </div>
@@ -285,7 +337,9 @@
             </div>
         </div>
         <hr class="my-4" />
+        <button class="btn btn-info" (click)=" ReturnToBasic()"> <- Previos</button>
         <button class="btn btn-info" (click)=" GoToAddTicket()">Next</button>
+        
     </form>
 </div>
 
@@ -315,13 +369,23 @@
                     <div class="form-group">
                         <label class="form-control-label">Ticket Name</label>
                         <br>
-                        <input formControlName="TicketName" type="text" id="Ticket-Name" class="form-control">
+                        <input formControlName="TicketName" 
+                        type="text" id="Ticket-Name" class="form-control"  
+                        [ngClass]="{'is-invalid':addTicketForm.get('TicketName').touched && addTicketForm.get('TicketName').invalid}" />
+                        <div *ngIf="addTicketForm.get('TicketName').touched && addTicketForm.get('TicketName').invalid"  class="invalid-feedback">
+                          <div *ngIf="addTicketForm.get('TicketName').errors.required">Ticket Name is required!</div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-control-label">Total Quntity</label>
                         <br>
-                        <input formControlName="Total" type="number" id="Total-Quntity" class="form-control">
+                        <input formControlName="Total" 
+                        type="number" id="Total-Quntity" class="form-control" 
+                        [ngClass]="{'is-invalid':addTicketForm.get('Total').touched && addTicketForm.get('Total').invalid}" />
+                        <div *ngIf="addTicketForm.get('Total').touched && addTicketForm.get('Total').invalid"  class="invalid-feedback">
+                          <div *ngIf="addTicketForm.get('Total').errors">Total Quntity is required positive!</div>
+                        </div>
 
 
                     </div>
@@ -329,7 +393,13 @@
                     <div class="form-group">
                         <label class="form-control-label">Max Quntity Per sale</label>
                         <br>
-                        <input formControlName="Max" type="number" id="Max-Quntity" class="form-control">
+                        <input formControlName="Max" 
+                        type="number" id="Max-Quntity" class="form-control"
+                         [ngClass]="{'is-invalid': addTicketForm.get('Max').invalid}" />
+                        <div *ngIf=" addTicketForm.get('Max').invalid"  class="invalid-feedback">
+                          <div *ngIf="addTicketForm.get('Max').errors">Max Quntity should be positive!</div>
+                        </div>
+
 
 
                     </div>
@@ -361,7 +431,11 @@
                     <div class="form-group">
                         <!-- <label class="form-control-label">Price</label> -->
                         <input formControlName="price" type="number" 
-                        class="form-control" id="price" name="price" placeholder="price">
+                        class="form-control" id="price" name="price" placeholder="price"
+                        [ngClass]="{'is-invalid':addTicketForm.get('price').touched && addTicketForm.get('price').invalid}" />
+                        <div *ngIf="addTicketForm.get('price').touched && addTicketForm.get('price').invalid"  class="invalid-feedback">
+                          <div *ngIf="addTicketForm.get('price').errors">Price is required positive!</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -373,7 +447,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="form-control-label">Ticket Description</label>
-                        <input formControlName="Description" type="text" id="Ticket-Description" class="form-control ">
+                        <input type="text" id="Ticket-Description" class="form-control ">
                     </div>
                 </div>
 
@@ -382,7 +456,12 @@
                     <div class="form-group">
                         <label class="form-control-label">Ticket Expire</label>
                         <br>
-                        <input formControlName="Expirydate" type="date" id="Start-date" class="form-control dateInput">
+                        <input formControlName="Expirydate" 
+                        type="date" id="Expirydate" class="form-control " 
+                        [ngClass]="{'is-invalid':addTicketForm.get('Expirydate').touched && addTicketForm.get('Expirydate').invalid}" />
+                        <div *ngIf="addTicketForm.get('Expirydate').touched && addTicketForm.get('Expirydate').invalid"  class="invalid-feedback">
+                          <div *ngIf="addTicketForm.get('Expirydate').errors.required">Ticket Expire is required !</div>
+                        </div>
 
                     </div>
                 </div>
@@ -399,6 +478,7 @@
 
 
         <hr class="my-4" />
+        <button class="btn btn-info" (click)=" ReturnToExtra()"> <- Previos</button>
         <button class="btn btn-info" (click)=" goToShowInfo()">Show Information</button>
         
     </form>
@@ -451,9 +531,9 @@
                     </ul>
                 </div>
             </div>
-
+     
         </div>
-
+        
 
     </div>
 </div>

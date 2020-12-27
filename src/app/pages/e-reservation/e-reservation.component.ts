@@ -65,12 +65,24 @@ export class EReservationComponent implements OnInit {
       // image:  ['', [Validators.required]],
       TicketName: ['', [Validators.required]],
       Total : ['', [Validators.required , Validators.min(1)]],
-      Max : ['', [Validators.required, Validators.min(1) ]],
+      Max : ['', [ Validators.min(1) ]],
       Expirydate: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
+     
       price: ['', [Validators.required , Validators.min(1)]],
 
     });
+  }
+  ReturnToBasic(){
+    this.basicInfo = true;
+    this.addTicketStatus = false
+    this.extraInfoStatus = false
+    this.buyersInfo = false;
+  }
+  ReturnToExtra(){
+    this.basicInfo = false;
+    this.addTicketStatus = false
+    this.extraInfoStatus = true
+    this.buyersInfo = false;
   }
 
   GoToEstraInfo() {
@@ -136,7 +148,7 @@ export class EReservationComponent implements OnInit {
       let ExpirydateToFormat = ExpirydateTo.getFullYear() + '-' + expireMonth + '-' + String(ExpirydateTo.getDate()).padStart(2, '0');
       
       console.log('ex', output, 'no', expireDateFormFormat, ExpirydateToFormat)
-      if (expireDateFormFormat < ExpirydateToFormat) {
+      if (expireDateFormFormat < ExpirydateToFormat && ExpirydateToFormat < output) {
         if (expireDateFormFormat < output) {
 
           Swal.fire({
@@ -208,14 +220,38 @@ export class EReservationComponent implements OnInit {
    
       if(params.Total >= params.Max){
         Swal.fire({
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500,
-        })
-        this.addTicketStatus = false;
-        this.extraInfoStatus = false
-        this.basicInfo = false;
-        this.buyersInfo = true;
+          
+                  showCancelButton: true,
+                  title: 'Are you sure?',
+          
+                  icon: 'warning',
+          
+                  confirmButtonText: 'Yes, add it!',
+                  cancelButtonText: 'No, its wrong'
+          
+                }).then((result) => {
+                if (result.value) {
+                  Swal.fire(
+                    'Yes!',
+                    'check your information .',
+                    'success'
+                  )
+                  this.addTicketStatus = false;
+                  this.extraInfoStatus = false
+                  this.basicInfo = false;
+                  this.buyersInfo = true;
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                  Swal.fire(
+                    'Cancelled',
+                    'your Information is wrong ?',
+                    'error'
+                  )
+                  console.log('Cancelled')
+                }
+              })
+        
+
        
       }
       else{
